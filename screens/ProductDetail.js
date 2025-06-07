@@ -1,14 +1,35 @@
+
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
 const ProductDetail = ({ route }) => {
   const { product } = route.params;
+  const [quantity, setQuantity] = React.useState(1);
+
+  const increaseQuantity = () => setQuantity(quantity + 1);
+  const decreaseQuantity = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
+
+
 
   return (
     <View style={styles.card}>
       <Image source={{ uri: product.image }} style={styles.image} />
       <Text style={styles.name}>{product.name}</Text>
       <Text style={styles.description}>{product.description}</Text>
+
+      <View style={styles.quantityContainer}>
+        <TouchableOpacity onPress={decreaseQuantity}>
+          <Text style={styles.quantityButton}>-</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.quantitTexty}>{quantity}</Text>
+
+        <TouchableOpacity onPress={increaseQuantity}>
+          <Text style={styles.quantityButton}>+</Text>
+        </TouchableOpacity>
+
+    </View>
+
     </View>
   );
 };
