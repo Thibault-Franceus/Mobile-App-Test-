@@ -2,50 +2,45 @@ import React from "react";
 import { View, ScrollView, StyleSheet, TouchableOpacity, Text } from "react-native";
 import ProductCard from "../components/ProductCard";
 
-const products = [
-  {
-    id: 1,
-    name: "Thibaults Favorit",
-    description: "€4,50",
-    image: "https://www.trappistwestmalle.be/wp-content/uploads/2023/03/Westmalle-Tripel-e1679067890610.png",
-  },
-  {
-    id: 2,
-    name: "Arthurs thick booty",
-    description: "€0",
-    image: "https://www.trappistwestmalle.be/wp-content/uploads/2023/03/Westmalle-Dubbel-e1679067974684-616x1024.png",
-  },
-  {
-    id: 3,
-    name: "Victors Favorite",
-    description: "€3,50",
-    image: "https://www.trappistwestmalle.be/wp-content/uploads/2023/03/Glas-met-fles-e1717663945824-608x1024.png",
-  },
-];
-
 const HomeScreen = ({ navigation }) => {
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {products.map((product) => (
-        <TouchableOpacity
-          key={product.id}
-          onPress={() => navigation.navigate('ProductDetail', { product })}
-        >
-          <ProductCard
-            image={product.image}
-            name={product.name}
-            description={product.description}
-          />
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
+    <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.overlayButton}
+        onPress={() => navigation.navigate("Products")}
+      >
+        <Text style={{ fontSize: 20, color: "Black" }}>View Products</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.overlayButton}
+        onPress={()=> navigation.navigate("Blogs")}
+      >
+        <Text style={{ fontSize: 20, color: "Black" }}>View Blogs</Text>
+      </TouchableOpacity>
+      </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    flex: 1,
+    justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#fff",
+  },
+  overlayButton: {
+    backgroundColor: "#007AFF",
+    paddingVertical: 30,
+    paddingHorizontal: 60,
+    borderRadius: 15,
+    marginVertical: 20,
+    width: "80%",
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 24,
+    fontWeight: "bold",
   },
 });
 

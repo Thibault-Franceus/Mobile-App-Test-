@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from "./screens/HomeScreen.js";
 import ProductDetail from "./screens/ProductDetail.js";
+import Products from "./screens/Products.js";
 
 
 
@@ -16,6 +17,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Products" component={Products} />
         <Stack.Screen name="ProductDetail" component={ProductDetail} />
       </Stack.Navigator>
     </NavigationContainer>
