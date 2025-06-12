@@ -1,6 +1,7 @@
 import React from "react";
 import { View, ScrollView, StyleSheet, TouchableOpacity, Text } from "react-native";
 import ProductCard from "../components/ProductCard";
+import { PrimaryButton, SecondaryButton } from "../components/AppButton";
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -15,9 +16,11 @@ const HomeScreen = ({ navigation }) => {
         style={styles.overlayButton}
         onPress={()=> navigation.navigate("Blogs")}
       >
+      
         <Text style={{ fontSize: 20, color: "Black" }}>View Blogs</Text>
       </TouchableOpacity>
-      </View>
+      
+    </View>
   );
 };
 
