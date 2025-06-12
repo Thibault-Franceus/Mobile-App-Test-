@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity, Button } from "react-native";
+import { PrimaryButton } from "../components/AppButton";
 
 const ProductDetail = ({ route }) => {
   const { product } = route.params;
@@ -29,9 +30,10 @@ const ProductDetail = ({ route }) => {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity style={styles.addToCartButton}>
-        <Text style={styles.addToCartText}>Bestel nu!</Text>
-      </TouchableOpacity>
+      <PrimaryButton 
+        title="Toevoegen aan winkelwagentje"
+        onPress={() => console.log(`Toegevoegd: ${product.name}, Aantal: ${quantity}`)}
+      />
 
       <Text style={styles.descTitle}>Beschrijving</Text>
       <Text style={styles.description}>{product.description}</Text>
@@ -91,13 +93,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     minWidth: 30,
     textAlign: "center",
-  },
-  addToCartButton: {
-    backgroundColor: "#007AFF",
-    borderRadius: 10,
-    paddingVertical: 14,
-    paddingHorizontal: 40,
-    marginBottom: 28,
   },
   addToCartText: {
     color: "#fff",

@@ -8,6 +8,7 @@ import ProductDetail from "./screens/ProductDetail.js";
 import Products from "./screens/Products.js";
 import Blogs from "./screens/Blogs.js";
 import BlogDetail from "./screens/BlogDetail.js";
+import Profile from "./screens/Profile.js";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -18,10 +19,10 @@ function MainTabs() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarActiveTintColor: "#007AFF",
-        tabBarInactiveTintColor: "#888",
+        tabBarActiveTintColor: "#d9a64d",
+        tabBarInactiveTintColor: "#fff",
         tabBarStyle: {
-          backgroundColor: "#fff",
+          backgroundColor: "#32343a",
           borderTopWidth: 1,
           borderTopColor: "#eee",
           height: 60,
@@ -35,6 +36,7 @@ function MainTabs() {
           if (route.name === "Home") iconName = "home";
           else if (route.name === "Products") iconName = "pricetag";
           else if (route.name === "Blogs") iconName = "book";
+          else if (route.name === "Profile") iconName = "person";
           return <Ionicons name={iconName} size={size} color={color} />;
         },
       })}
@@ -42,6 +44,7 @@ function MainTabs() {
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Products" component={Products} />
       <Tab.Screen name="Blogs" component={Blogs} />
+      <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
 }
