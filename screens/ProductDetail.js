@@ -1,67 +1,121 @@
-
 import React from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity, Button } from "react-native";
 
 const ProductDetail = ({ route }) => {
   const { product } = route.params;
   const [quantity, setQuantity] = React.useState(1);
 
+  // Extract price as a number if needed (assuming product.description is price string like "€4,50")
+  const price = parseFloat(
+    (product.price ?? product.description ?? "0").toString().replace(/[^\d,.-]/g, '').replace(',', '.')
+  ) || 0;
+
   const increaseQuantity = () => setQuantity(quantity + 1);
   const decreaseQuantity = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
 
-
-
   return (
-    <View style={styles.card}>
+    <View style={styles.container}>
       <Image source={{ uri: product.image }} style={styles.image} />
       <Text style={styles.name}>{product.name}</Text>
+      <Text style={styles.price}>€{price.toFixed(2)}</Text>
+
+      <View style={styles.quantityRow}>
+        <TouchableOpacity style={styles.squareButton} onPress={decreaseQuantity}>
+          <Text style={styles.squareButtonText}>-</Text>
+        </TouchableOpacity>
+        <Text style={styles.quantityText}>{quantity}</Text>
+        <TouchableOpacity style={styles.squareButton} onPress={increaseQuantity}>
+          <Text style={styles.squareButtonText}>+</Text>
+        </TouchableOpacity>
+      </View>
+
+      <TouchableOpacity style={styles.addToCartButton}>
+        <Text style={styles.addToCartText}>Bestel nu!</Text>
+      </TouchableOpacity>
+
+      <Text style={styles.descTitle}>Beschrijving</Text>
       <Text style={styles.description}>{product.description}</Text>
-
-      <View style={styles.quantityContainer}>
-        <TouchableOpacity onPress={decreaseQuantity}>
-          <Text style={styles.quantityButton}>-</Text>
-        </TouchableOpacity>
-
-        <Text style={styles.quantitTexty}>{quantity}</Text>
-
-        <TouchableOpacity onPress={increaseQuantity}>
-          <Text style={styles.quantityButton}>+</Text>
-        </TouchableOpacity>
-
-    </View>
-
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
+  container: {
+    flex: 1,
     backgroundColor: "#fff",
-    borderRadius: 10,
-    padding: 15,
-    margin: 10,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 5,
     alignItems: "center",
-    width: 200,
+    padding: 24,
   },
   image: {
-    width: 100,
-    height: 100,
-    borderRadius: 10,
+    width: 180,
+    height: 180,
+    borderRadius: 12,
+    marginTop: 24,
+    marginBottom: 16,
+    alignSelf: "center",
   },
   name: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#111",
+    marginBottom: 6,
+    textAlign: "center",
+  },
+  price: {
+    fontSize: 18,
+    color: "#888",
+    marginBottom: 18,
+    textAlign: "center",
+  },
+  quantityRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 18,
+  },
+  squareButton: {
+    width: 40,
+    height: 40,
+    backgroundColor: "#eee",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 8,
+    marginHorizontal: 10,
+  },
+  squareButtonText: {
+    fontSize: 22,
+    fontWeight: "bold",
+    color: "#333",
+  },
+  quantityText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    minWidth: 30,
+    textAlign: "center",
+  },
+  addToCartButton: {
+    backgroundColor: "#007AFF",
+    borderRadius: 10,
+    paddingVertical: 14,
+    paddingHorizontal: 40,
+    marginBottom: 28,
+  },
+  addToCartText: {
+    color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
-    marginTop: 10,
+  },
+  descTitle: {
+    alignSelf: "flex-start",
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 6,
+    color: "#222",
   },
   description: {
-    fontSize: 14,
-    color: "#666",
-    textAlign: "center",
-    marginTop: 5,
+    alignSelf: "flex-start",
+    fontSize: 16,
+    color: "#444",
+    marginBottom: 10,
   },
 });
 

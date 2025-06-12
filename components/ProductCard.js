@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text, Image, Button, StyleSheet } from "react-native";
 
-const ProductCard = ({ image, name, description }) => {
+const ProductCard = ({ image, name, price }) => {
   return (
     <View style={styles.card}>
         <Image source={{ uri: image }} style={styles.image} />
         <Text style={styles.name}>{name}</Text>
-        <Text style={styles.description}>{description}</Text>
+        <Text style={styles.price}>{price}</Text>
     </View>
   );
 };
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 5,
     alignItems: "center",
-    width: 200,
+    width: 160,
   },
   image: {
     width: 100,
@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   name: {
-    fontSize: 18,
+    fontSize: 12,
     fontWeight: "bold",
     marginTop: 10,
   },
-  description: {
-    fontSize: 14,
+  price: {
+    fontSize: 10,
     color: "#666",
     textAlign: "center",
     marginTop: 5,

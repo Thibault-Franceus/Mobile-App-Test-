@@ -43,6 +43,7 @@ const Products = ({ navigation }) => {
                             <ProductCard
                                 image={product.image}
                                 name={product.name}
+                                price={`€${product.price.toFixed(2)}`}
                             />
                         </TouchableOpacity>
                     )))}
