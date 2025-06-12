@@ -5,7 +5,7 @@ const ProductDetail = ({ route }) => {
   const { product } = route.params;
   const [quantity, setQuantity] = React.useState(1);
 
-  // Extract price as a number if needed (assuming product.description is price string like "€4,50")
+  
   const price = parseFloat(
     (product.price ?? product.description ?? "0").toString().replace(/[^\d,.-]/g, '').replace(',', '.')
   ) || 0;
