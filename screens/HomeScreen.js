@@ -21,20 +21,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#fff",
   },
-  overlayButton: {
-    backgroundColor: "#007AFF",
-    paddingVertical: 30,
-    paddingHorizontal: 60,
-    borderRadius: 15,
-    marginVertical: 20,
-    width: "80%",
-    alignItems: "center",
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 24,
-    fontWeight: "bold",
-  },
 });
 
 export default HomeScreen;
