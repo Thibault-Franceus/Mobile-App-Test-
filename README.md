@@ -1,7 +1,4 @@
-# Mobile-App-Test-
+# E-Commerce App with Webflow API link 
 
-# Navigate to right map 
-cd mobile-app 
+# HomeScreen 
 
-# Start the app
-npm run start

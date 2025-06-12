@@ -21,8 +21,11 @@ const Blogs = ({ navigation }) => {
                 data.items.map((item) => ({
                     id: item.id,
                     name: item.fieldData.name,
+                    date: item.fieldData.date,
                     image: item.fieldData["thumbnail-image"]?.url,
-                    author: item.fieldData.author
+                    author: item.fieldData.author,
+                    summary: item.fieldData["blog-summary"],
+                    content: item.fieldData["blog-content"],
                 }))
             )
         )

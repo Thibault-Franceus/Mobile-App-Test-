@@ -8,6 +8,7 @@ import HomeScreen from "./screens/HomeScreen.js";
 import ProductDetail from "./screens/ProductDetail.js";
 import Products from "./screens/Products.js";
 import Blogs from "./screens/Blogs.js";
+import BlogDetail from "./screens/BlogDetail.js";
 
 
 
@@ -20,6 +21,7 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Products" component={Products} />
         <Stack.Screen name="Blogs" component={Blogs} />
+        <Stack.Screen name="BlogDetail" component={BlogDetail} />
         <Stack.Screen name="ProductDetail" component={ProductDetail} />
       </Stack.Navigator>
     </NavigationContainer>
