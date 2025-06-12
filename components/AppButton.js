@@ -19,21 +19,21 @@ export const SecondaryButton = ({ title, onPress, style }) => {
 
 const styles = StyleSheet.create({
   primary: {
-    backgroundColor: "#007AFF",
+    backgroundColor: "#d9a64d",
     paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 8,
+    paddingHorizontal: 42,
+    borderWidth: 1,
+    borderColor: "#32343a",
   },
     secondary: {
-        backgroundColor: "#f0f0f0",
+        backgroundColor: "#fff",
         paddingVertical: 12,
-        paddingHorizontal: 24,
-        borderRadius: 8,
+        paddingHorizontal: 42,
         borderWidth: 1,
-        borderColor: "#ccc",
+        borderColor: "#32343a",
     },
   buttonText: {
-    color: "#fff",
+    color: "#32343a",
     fontSize: 16,
     fontWeight: "bold",
   },

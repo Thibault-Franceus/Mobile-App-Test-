@@ -19,7 +19,11 @@ const HomeScreen = ({ navigation }) => {
       
         <Text style={{ fontSize: 20, color: "Black" }}>View Blogs</Text>
       </TouchableOpacity>
-      
+      <SecondaryButton
+        title="Contact"
+        onPress={() => navigation.navigate("Contact")}
+        style={{ marginTop: 20 }}
+      />
     </View>
   );
 };
