@@ -7,7 +7,6 @@ const ProductCard = ({ image, name, description }) => {
         <Image source={{ uri: image }} style={styles.image} />
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.description}>{description}</Text>
-        <Button title="Add to cart  "/>
     </View>
   );
 };
