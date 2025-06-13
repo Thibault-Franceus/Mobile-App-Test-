@@ -22,25 +22,25 @@ export const CartProvider = ({ children }) => {
         });
     }
 
-const removeFromCart = (productId) => {
-    setCart((prev) => prev.filter(item => item.id !== productId));
-  };
+    const removeFromCart = (productId) => {
+        setCart((prev) => prev.filter(item => item.id !== productId));
+    };
 
-  const updateQuantity = (productId, quantity) => {
-    setCart((prev) =>
-      prev.map(item =>
+    const updateQuantity = (productId, quantity) => {
+        setCart((prev) =>
+        prev.map(item =>
         item.id === productId ? { ...item, quantity } : item
       )
     );
-  };
+    };
 
-    const clearCart = () => 
+    const clearCart = () => {
         setCart([]);
+    };
 
     return (
         <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart }}>
             {children}
         </CartContext.Provider>
     );
-}
-export default CartProvider;
+};

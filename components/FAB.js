@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import { TouchableOpacity, StyleSheet, Modal, View } from "react-native";
+import { TouchableOpacity, StyleSheet, Modal, View, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+
+import { useCart } from "../context/CartContext";
+import { PrimaryButton } from "./AppButton";
+
 
 export default function FloatingCartButton({ children }) {
   const [modalVisible, setModalVisible] = useState(false);
+  const { cart, addToCart, removeFromCart, updateQuantity, clearCart } = useCart();
 
   return (
     <>
@@ -21,7 +26,26 @@ export default function FloatingCartButton({ children }) {
       >
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
-            {/* Hier komt straks je winkelmand-inhoud */}
+            <View>
+                {cart.length === 0 ? (
+                    <Text>Je winkeldmandje is leeg.</Text>
+                ) : (
+                    cart.map(item => (
+                        <View key={item.id} style={{marginBottom:12}}>
+                            <Text>{item.name} - {item.quantity} x €{item.price.toFixed(2)}</Text>
+                            <TouchableOpacity onPress={() => removeFromCart(item.id)}>
+                                <Ionicons name="trash" size={24} color="#d9534f" />
+                            </TouchableOpacity>
+                        </View>
+                    ))
+                )}
+                <View style={{marginTop: 12}}>
+                    <Text>Totaal: €{cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)}</Text>
+                </View>
+            </View>
+            <PrimaryButton title="Afrekenen" onPress={() => {
+                setModalVisible(false);
+            }} />   
             <TouchableOpacity
               style={styles.closeButton}
               onPress={() => setModalVisible(false)}

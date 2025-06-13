@@ -1,10 +1,13 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity, Button } from "react-native";
 import { PrimaryButton } from "../components/AppButton";
+import { useCart } from "../context/CartContext";
+import FloatingCartButton from "../components/FAB";
 
 const ProductDetail = ({ route }) => {
   const { product } = route.params;
   const [quantity, setQuantity] = React.useState(1);
+  const { addToCart } = useCart();
 
   
   const price = parseFloat(
@@ -32,11 +35,12 @@ const ProductDetail = ({ route }) => {
 
       <PrimaryButton 
         title="Toevoegen aan winkelwagentje"
-        onPress={() => console.log(`Toegevoegd: ${product.name}, Aantal: ${quantity}`)}
+        onPress={() => addToCart(product, quantity)}
       />
 
       <Text style={styles.descTitle}>Beschrijving</Text>
       <Text style={styles.description}>{product.description}</Text>
+      <FloatingCartButton />
     </View>
   );
 };

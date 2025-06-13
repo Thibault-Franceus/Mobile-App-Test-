@@ -5,6 +5,7 @@ import { PrimaryButton, SecondaryButton } from "../components/AppButton";
 import ProductCard from "../components/ProductCard";
 import FloatingCartButton from "../components/FAB";
 
+
 const HomeScreen = ({ navigation }) => {
   const [products, setProducts] = useState([]);
 

@@ -3,6 +3,7 @@ import { View, ScrollView, StyleSheet, TouchableOpacity, Text, TextInput } from 
 import ProductCard from "../components/ProductCard";
 
 import { Picker } from "@react-native-picker/picker"; 
+import FloatingCartButton from "../components/FAB";
 
 const categoryNames = {
     "": "All",
@@ -106,6 +107,7 @@ const Products = ({ navigation }) => {
 
                 </ScrollView>
             </View>
+            <FloatingCartButton />
         </View>
         
     );
