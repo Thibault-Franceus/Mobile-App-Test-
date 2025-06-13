@@ -26,13 +26,14 @@ export default function FloatingCartButton({ children }) {
       >
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
+            <Text style={{fontSize: 20, fontWeight: "bold", marginBottom: 12}}>Winkelmandje</Text>
             <View>
                 {cart.length === 0 ? (
                     <Text>Je winkeldmandje is leeg.</Text>
                 ) : (
                     cart.map(item => (
-                        <View key={item.id} style={{marginBottom:12}}>
-                            <Text>{item.name} - {item.quantity} x €{item.price.toFixed(2)}</Text>
+                        <View key={item.id} style={styles.cartRow}>
+                            <Text>{item.name} // {item.quantity} x €{item.price.toFixed(2)}</Text>
                             <TouchableOpacity onPress={() => removeFromCart(item.id)}>
                                 <Ionicons name="trash" size={24} color="#d9534f" />
                             </TouchableOpacity>
@@ -40,7 +41,7 @@ export default function FloatingCartButton({ children }) {
                     ))
                 )}
                 <View style={{marginTop: 12}}>
-                    <Text>Totaal: €{cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)}</Text>
+                    <Text style={styles.totalPrice}>Totaal: €{cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)}</Text>
                 </View>
             </View>
             <PrimaryButton title="Afrekenen" onPress={() => {
@@ -97,4 +98,19 @@ const styles = StyleSheet.create({
     top: 12,
     zIndex: 10,
   },
+    totalPrice: {
+        fontSize: 18,
+        fontWeight: "bold",
+        marginTop: 12,
+        textAlign: "right",
+        marginBottom: 12,
+    },
+    cartRow: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        paddingVertical: 12,
+        borderBottomWidth: 1,
+        borderBottomColor: "#eee",
+    },
 });
