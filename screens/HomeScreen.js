@@ -36,15 +36,15 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Hi David</Text>
-      <Text style={styles.subHeader}>Welcome back!</Text>
+      <Text style={styles.subHeader}>Welkom terug!</Text>
       <View style={styles.promoContainer}>
-        <Text style={styles.promoTitle}>Exclusive Offer Just for You!</Text>
+        <Text style={styles.promoTitle}>Exclusieve Aanbieding Voor Jou!</Text>
         <Text style={styles.promoText}>
-          Enjoy a special discount on your next purchase. Use code: DAVID20
+          Geniet van een speciale korting op je volgende aankoop. Gebruik code: DAVID20
         </Text>
       </View>
 
-      <Text style={styles.sectionTitle}>Last Viewed Products</Text>
+      <Text style={styles.sectionTitle}>Laatst bekeken</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {products.slice(0,4).map((product) => (
         <TouchableOpacity
