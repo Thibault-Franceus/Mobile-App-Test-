@@ -17,6 +17,7 @@ const Products = ({ navigation }) => {
     const [products, setProducts] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
+    const [sortOption, setSortOption] = useState("price-asc");
 
     useEffect(() => {
         fetch(
@@ -50,6 +51,13 @@ const Products = ({ navigation }) => {
         product.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+    const sortedProducts = [...filteredProducts].sort((a, b) => {
+        if (sortOption === "price-asc") return a.price - b.price;
+        if (sortOption === "price-desc") return b.price - a.price;
+        if (sortOption === "name-asc")  return a.name.localeCompare(b.name);
+        if (sortOption === "name-desc") return b.name.localeCompare(a.name);
+    });
+
     return (
         <View style={styles.container}>
             <Text style={styles.heading}>Products</Text>
@@ -59,7 +67,17 @@ const Products = ({ navigation }) => {
                 value={searchQuery}
                 onChangeText={setSearchQuery}
             />
-            <ScrollView style={styles.pickerContainer}>
+            <View style={styles.pickerContainer}>
+                <Picker
+                    selectedValue={sortOption}
+                    onValueChange={setSortOption}
+                    style={styles.picker}
+                >
+                    <Picker.Item label="Sort by Price (Low to High)" value="price-asc" />
+                    <Picker.Item label="Sort by Price (High to Low)" value="price-desc" />
+                    <Picker.Item label="Sort by Name (A to Z)" value="name-asc" />
+                    <Picker.Item label="Sort by Name (Z to A)" value="name-desc" />
+                </Picker>
                 <Picker
                     selectedValue={selectedCategory}
                     onValueChange={setSelectedCategory}
@@ -70,8 +88,10 @@ const Products = ({ navigation }) => {
                             <Picker.Item key={category} label={category} value={category} />
                         ))}
                     </Picker>
-                <View style={styles.productList}>
-                    {filteredProducts.map(((product) => (
+            </View>
+            <View style={{flex: 1}}>
+                <ScrollView style={styles.productList}>
+                    {sortedProducts.map(((product) => (
                         <TouchableOpacity
                             key={product.id}
                             onPress={() => navigation.navigate("ProductDetail", { product })}
@@ -83,9 +103,11 @@ const Products = ({ navigation }) => {
                             />
                         </TouchableOpacity>
                     )))}
-                </View>
-            </ScrollView>
+
+                </ScrollView>
+            </View>
         </View>
+        
     );
 }
 
@@ -106,7 +128,7 @@ const styles = StyleSheet.create({
     productList: {
         flexDirection: "row",
         flexWrap: "wrap",
-        justifyContent: "space-between",
+        flex: 1,
     },
     pickerContainer: {
         marginBottom: 20,
@@ -116,6 +138,14 @@ const styles = StyleSheet.create({
         width: "100%",
         backgroundColor: "#f0f0f0",
         borderRadius: 5,
+        marginBottom: 20,
+    },
+    searchInput: {
+        height: 40,
+        borderColor: "#ccc",
+        borderWidth: 1,
+        borderRadius: 5,
+        paddingHorizontal: 10,
         marginBottom: 20,
     },
 });

@@ -1,9 +1,10 @@
 import React, {use, useEffect, useState} from "react";
-import { View, ScrollView, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { View, ScrollView, StyleSheet, TouchableOpacity, Text, TextInput } from "react-native";
 import BlogCard from "../components/BlogCard";
 
 const Blogs = ({ navigation }) => {
     const [blogs, setBlogs] = useState([]);
+    const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
         fetch(
@@ -32,12 +33,23 @@ const Blogs = ({ navigation }) => {
         .catch((error) => console.error("Error fetching blogs:", error));
     }, []);
 
+    const filteredBlogs = () => blogs.filter((item) =>
+            item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            item.author.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
     return (
         <View style={styles.container}>
             <Text style={styles.heading}>Blogs</Text>
+            <TextInput
+                style={styles.searchInput}
+                placeholder="Search blogs..."
+                value={searchQuery}
+                onChangeText={setSearchQuery}
+            />
             <ScrollView style={styles.cardContainer}>
                 <View style={styles.blogList}>
-                    {blogs.map(((item) => (
+                    {filteredBlogs().map(((item) => (
                         <TouchableOpacity
                             key={item.id}
                             onPress={() => navigation.navigate("BlogDetail", { item })}
@@ -73,6 +85,14 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         flexWrap: "wrap",
         justifyContent: "space-between",
+    },
+    searchInput: {
+        height: 40,
+        borderColor: "#ccc",
+        borderWidth: 1,
+        borderRadius: 5,
+        paddingHorizontal: 10,
+        marginBottom: 20,
     },
 });
 
