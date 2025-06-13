@@ -24,6 +24,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 42,
     borderWidth: 1,
     borderColor: "#32343a",
+    maxWidth: 220,
+    alignSelf: "center",
   },
     secondary: {
         backgroundColor: "#fff",
