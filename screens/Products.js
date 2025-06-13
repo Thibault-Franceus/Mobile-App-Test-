@@ -38,8 +38,7 @@ const Products = ({ navigation }) => {
                     price: (item.skus[0].fieldData.price.value || 0)/ 100,
                     image: item.skus[0]?.fieldData["main-image"]?.url ,
                     description: item.product.fieldData.description,
-                    category:
-                    categoryNames[item.product.fieldData.category[0]] || "Other",
+
                 }))
             )
         )
