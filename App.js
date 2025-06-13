@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import { CartProvider } from "./context/CartContext.js";
 import HomeScreen from "./screens/HomeScreen.js";
 import ProductDetail from "./screens/ProductDetail.js";
 import Products from "./screens/Products.js";
@@ -51,6 +52,7 @@ function MainTabs() {
 
 export default function App() {
   return (
+    <CartProvider>
     <NavigationContainer>
       <Stack.Navigator>
         
@@ -64,5 +66,6 @@ export default function App() {
         <Stack.Screen name="BlogDetail" component={BlogDetail} />
       </Stack.Navigator>
     </NavigationContainer>
+    </CartProvider>
   );
 }
