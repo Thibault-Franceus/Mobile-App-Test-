@@ -38,7 +38,8 @@ const Products = ({ navigation }) => {
                     price: (item.skus[0].fieldData.price.value || 0)/ 100,
                     image: item.skus[0]?.fieldData["main-image"]?.url ,
                     description: item.product.fieldData.description,
-
+                    category:
+                    categoryNames[item.product.fieldData.category[0]] || "Other",
                 }))
             )
         )
@@ -88,8 +89,8 @@ const Products = ({ navigation }) => {
                         ))}
                     </Picker>
             </View>
-            <View style={{flex: 1}}>
-                <ScrollView style={styles.productList}>
+            <View >
+                <ScrollView >
                     {sortedProducts.map(((product) => (
                         <TouchableOpacity
                             key={product.id}
@@ -121,14 +122,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         marginBottom: 20,
     },
-    cardContainer: {
-        flex: 1,
-    },
-    productList: {
-        flexDirection: "row",
-        flexWrap: "wrap",
-        flex: 1,
-    },
+    
     pickerContainer: {
         marginBottom: 20,
     },
