@@ -17,6 +17,10 @@ export default function Profile({ navigation }) {
         </Text>
       </View>
       <ProfileRow
+        title="Mijn profiel"
+        onPress={() => navigation.navigate("MyProfile")}
+      />
+      <ProfileRow
         title="Instellingen"
         onPress={() => navigation.navigate("Settings")}
       />

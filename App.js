@@ -11,6 +11,7 @@ import Blogs from "./screens/Blogs.js";
 import BlogDetail from "./screens/BlogDetail.js";
 import Profile from "./screens/Profile.js";
 import Settings from "./screens/Settings.js";
+import MyProfile from "./screens/MyProfile.js";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -66,6 +67,7 @@ export default function App() {
         <Stack.Screen name="ProductDetail" component={ProductDetail} />
         <Stack.Screen name="BlogDetail" component={BlogDetail} />
         <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="MyProfile" component={MyProfile} />
       </Stack.Navigator>
     </NavigationContainer>
     </CartProvider>
