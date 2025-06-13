@@ -10,6 +10,7 @@ import Products from "./screens/Products.js";
 import Blogs from "./screens/Blogs.js";
 import BlogDetail from "./screens/BlogDetail.js";
 import Profile from "./screens/Profile.js";
+import Settings from "./screens/Settings.js";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -64,6 +65,7 @@ export default function App() {
         
         <Stack.Screen name="ProductDetail" component={ProductDetail} />
         <Stack.Screen name="BlogDetail" component={BlogDetail} />
+        <Stack.Screen name="Settings" component={Settings} />
       </Stack.Navigator>
     </NavigationContainer>
     </CartProvider>
