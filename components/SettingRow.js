@@ -5,7 +5,10 @@ export default function SettingRow({ title, value, onValueChange }) {
     return (
         <View style={styles.row}>
             <Text style={styles.title}>{title}</Text>
-            <Switch value={value} onValueChange={onValueChange} />
+            <Switch value={value} onValueChange={onValueChange} 
+            thumbColor={value ? "#d9a64d" : "#ccc"} 
+            trackColor={{ false: "#ccc", true: "#d9a64d" }}
+            />
         </View>
     );
 }
