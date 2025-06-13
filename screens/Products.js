@@ -40,7 +40,7 @@ const Products = ({ navigation }) => {
                     image: item.skus[0]?.fieldData["main-image"]?.url ,
                     description: item.product.fieldData.description,
                     category:
-                    categoryNames[item.product.fieldData.category[0]] || "Other",
+                    categoryNames[item.product.fieldData.category[0]] || "Andere",
                 }))
             )
         )
