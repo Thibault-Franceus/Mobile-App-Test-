@@ -1,6 +1,7 @@
 import React, {use, useEffect, useState} from "react";
 import { View, ScrollView, StyleSheet, TouchableOpacity, Text, TextInput } from "react-native";
 import BlogCard from "../components/BlogCard";
+import FloatingCartButton from "../components/FAB";
 
 const Blogs = ({ navigation }) => {
     const [blogs, setBlogs] = useState([]);
@@ -63,6 +64,7 @@ const Blogs = ({ navigation }) => {
                     )))}
                 </View>
             </ScrollView>
+            <FloatingCartButton />
         </View>
     );
 }

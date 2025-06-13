@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import ProfileRow from "../components/ProfileRow";
+import FloatingCartButton from "../components/FAB";
 
 export default function Profile({ navigation }) {
   return (
@@ -27,6 +28,7 @@ export default function Profile({ navigation }) {
       <ProfileRow
         title="Contact"
       />
+      <FloatingCartButton />
     </View>
   );
 }
