@@ -2,8 +2,20 @@ import React, {use, useEffect, useState} from "react";
 import { View, ScrollView, StyleSheet, TouchableOpacity, Text } from "react-native";
 import ProductCard from "../components/ProductCard";
 
+import { Picker } from "@react-native-picker/picker"; 
+
+const categoryNames = {
+    "": "All",
+    "68483e783bfc3bc5fa69adab": "Trappistenkaas",
+    "68483de200fa4030661cfe5b": "Trappistenbier",
+    "68483dbc3ad7f8b7cfb809b6": "Fruitbier",
+};
+
+
+
 const Products = ({ navigation }) => {
     const [products, setProducts] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState("");
 
     useEffect(() => {
         fetch(
@@ -24,18 +36,34 @@ const Products = ({ navigation }) => {
                     price: (item.skus[0].fieldData.price.value || 0)/ 100,
                     image: item.skus[0]?.fieldData["main-image"]?.url ,
                     description: item.product.fieldData.description,
+                    category:
+                    categoryNames[item.product.fieldData.category[0]] || "Other",
                 }))
             )
         )
         .catch((error) => console.error("Error fetching products:", error));
     }, []);
 
+    const filteredProducts = selectedCategory
+        ? products.filter((product) => product.category === selectedCategory)
+        : products;
+
     return (
         <View style={styles.container}>
             <Text style={styles.heading}>Products</Text>
-            <ScrollView style={styles.cardContainer}>
+            <ScrollView style={styles.pickerContainer}>
+                <Picker
+                    selectedValue={selectedCategory}
+                    onValueChange={setSelectedCategory}
+                    style={styles.picker}
+                    >
+                        <Picker.Item label="All Categories" value="" />
+                        {[...new Set(products.map((product) => product.category))].map((category) => (
+                            <Picker.Item key={category} label={category} value={category} />
+                        ))}
+                    </Picker>
                 <View style={styles.productList}>
-                    {products.map(((product) => (
+                    {filteredProducts.map(((product) => (
                         <TouchableOpacity
                             key={product.id}
                             onPress={() => navigation.navigate("ProductDetail", { product })}
