@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { View, ScrollView, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { PrimaryButton, SecondaryButton } from "../components/AppButton";
 import ProductCard from "../components/ProductCard";
+import FloatingCartButton from "../components/FAB";
 
 const HomeScreen = ({ navigation }) => {
   const [products, setProducts] = useState([]);
@@ -58,6 +59,7 @@ const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
         ))}
       </ScrollView>
+      <FloatingCartButton/>
     </View>
   );
 };

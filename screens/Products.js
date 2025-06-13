@@ -60,10 +60,10 @@ const Products = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.heading}>Products</Text>
+            <Text style={styles.heading}>Producten</Text>
             <TextInput 
                 style={styles.searchInput}
-                placeholder="Search products..."
+                placeholder="Zoek producten..."
                 value={searchQuery}
                 onChangeText={setSearchQuery}
             />
@@ -73,17 +73,17 @@ const Products = ({ navigation }) => {
                     onValueChange={setSortOption}
                     style={styles.picker}
                 >
-                    <Picker.Item label="Sort by Price (Low to High)" value="price-asc" />
-                    <Picker.Item label="Sort by Price (High to Low)" value="price-desc" />
-                    <Picker.Item label="Sort by Name (A to Z)" value="name-asc" />
-                    <Picker.Item label="Sort by Name (Z to A)" value="name-desc" />
+                    <Picker.Item label="Prijs (Laag naar Hoog)" value="price-asc" />
+                    <Picker.Item label="Prijs (Hoog naar Laag)" value="price-desc" />
+                    <Picker.Item label="Naam (A tot Z)" value="name-asc" />
+                    <Picker.Item label="Naam (Z tot A)" value="name-desc" />
                 </Picker>
                 <Picker
                     selectedValue={selectedCategory}
                     onValueChange={setSelectedCategory}
                     style={styles.picker}
                     >
-                        <Picker.Item label="All Categories" value="" />
+                        <Picker.Item label="Alle Categorieën" value="" />
                         {[...new Set(products.map((product) => product.category))].map((category) => (
                             <Picker.Item key={category} label={category} value={category} />
                         ))}

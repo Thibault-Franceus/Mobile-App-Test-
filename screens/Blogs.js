@@ -43,7 +43,7 @@ const Blogs = ({ navigation }) => {
             <Text style={styles.heading}>Blogs</Text>
             <TextInput
                 style={styles.searchInput}
-                placeholder="Search blogs..."
+                placeholder="Zoek blogs..."
                 value={searchQuery}
                 onChangeText={setSearchQuery}
             />

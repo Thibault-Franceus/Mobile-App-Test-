@@ -22,7 +22,7 @@ export default function Profile({ navigation }) {
         title="Laatste bestellingen"
       />
       <ProfileRow
-        title="Gelikete producten"
+        title="Favorieten"
       />
       <ProfileRow
         title="Contact"
