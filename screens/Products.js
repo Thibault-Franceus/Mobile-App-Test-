@@ -1,5 +1,5 @@
 import React, {use, useEffect, useState} from "react";
-import { View, ScrollView, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { View, ScrollView, StyleSheet, TouchableOpacity, Text, TextInput } from "react-native";
 import ProductCard from "../components/ProductCard";
 
 import { Picker } from "@react-native-picker/picker"; 
@@ -16,6 +16,7 @@ const categoryNames = {
 const Products = ({ navigation }) => {
     const [products, setProducts] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
         fetch(
@@ -44,13 +45,20 @@ const Products = ({ navigation }) => {
         .catch((error) => console.error("Error fetching products:", error));
     }, []);
 
-    const filteredProducts = selectedCategory
-        ? products.filter((product) => product.category === selectedCategory)
-        : products;
+    const filteredProducts = products.filter((product) => 
+        (selectedCategory === "" || product.category === selectedCategory) &&
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     return (
         <View style={styles.container}>
             <Text style={styles.heading}>Products</Text>
+            <TextInput 
+                style={styles.searchInput}
+                placeholder="Search products..."
+                value={searchQuery}
+                onChangeText={setSearchQuery}
+            />
             <ScrollView style={styles.pickerContainer}>
                 <Picker
                     selectedValue={selectedCategory}
@@ -99,6 +107,16 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         flexWrap: "wrap",
         justifyContent: "space-between",
+    },
+    pickerContainer: {
+        marginBottom: 20,
+    },
+    picker: {
+        height: 50,
+        width: "100%",
+        backgroundColor: "#f0f0f0",
+        borderRadius: 5,
+        marginBottom: 20,
     },
 });
 
